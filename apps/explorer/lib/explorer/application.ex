@@ -158,6 +158,13 @@ defmodule Explorer.Application do
         configure_mode_dependent_process(Explorer.Migrator.ArbitrumDaRecordsNormalization, :indexer),
         configure_mode_dependent_process(Explorer.Migrator.ShrinkInternalTransactions, :indexer),
         configure_chain_type_dependent_process(Explorer.Chain.Cache.BlackfortValidatorsCounters, :blackfort),
+        configure_chain_type_dependent_process(Explorer.Chain.Cache.LatestL1BlockNumber, [
+          :optimism,
+          :polygon_edge,
+          :polygon_zkevm,
+          :scroll,
+          :shibarium
+        ]),
         configure_chain_type_dependent_process(Explorer.Chain.Cache.StabilityValidatorsCounters, :stability),
         configure_chain_type_dependent_con_cache(),
         Explorer.Migrator.SanitizeDuplicatedLogIndexLogs
